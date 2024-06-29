@@ -1,5 +1,6 @@
 package com.me.server.model;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,11 +33,21 @@ public class User implements UserDetails {
     private String email;
     @Column(name = "password")
     private String password;
+    @Column(name = "createdAt", updatable = false)
+    private LocalDateTime createdAt;
+    @Column(name = "updatedAt", updatable = true)
+    private LocalDateTime updatedAt;
+    @Column(name = "lastLogin", updatable = true)
+    private LocalDateTime lastLogin;
 
     @Builder
-    public User(String email, String password, String auth) {
+    public User(String email, String password, LocalDateTime createdAt, LocalDateTime updatedAt,
+            LocalDateTime lastLogin) {
         this.email = email;
         this.password = password;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.lastLogin = lastLogin;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.me.server.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class UserService {
     return userRepository.save(User.builder()
         .email(dto.getEmail())
         .password(bCryptPasswordEncoder.encode(dto.getPassword()))
+        .createdAt(LocalDateTime.now())
         .build());
   }
 
