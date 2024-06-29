@@ -30,17 +30,9 @@ public class WebSecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    return http.authorizeHttpRequests(auth -> auth.requestMatchers(
-        new AntPathRequestMatcher("/login"),
-        new AntPathRequestMatcher("/signup"),
-        new AntPathRequestMatcher("/user")).permitAll()
-        .anyRequest().authenticated()) // 위의 pattern을 제외한 request는 인가는 필요없지만 인증은 성공해야함.
-        .formLogin(formLogin -> formLogin
-            .loginPage("/login")
-            .defaultSuccessUrl("/questions"))
-        .logout(logout -> logout
-            .logoutSuccessUrl("/login")
-            .invalidateHttpSession(true)) // 로그아웃 하면세션 전체 삭제
+    return http
+        .formLogin(login -> login.disable())
+        .httpBasic(httpBasic -> httpBasic.disable())
         .csrf(AbstractHttpConfigurer::disable)
         .build();
   }
