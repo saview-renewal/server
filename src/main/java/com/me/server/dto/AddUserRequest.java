@@ -1,6 +1,6 @@
 package com.me.server.dto;
 
-import com.me.server.model.User;
+import com.me.server.domain.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,12 +10,14 @@ import lombok.Setter;
 public class AddUserRequest {
 
   private String email;
-  private String password;
+  private String nickname;
+  private String provider;
 
   public User toEntity() {
     return User.builder()
         .email(email)
-        .password(password)
+        .nickname(nickname)
+        .provider(provider)
         .build();
   }
 }

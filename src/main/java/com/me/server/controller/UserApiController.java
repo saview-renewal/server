@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.me.server.domain.User;
 import com.me.server.dto.AddUserRequest;
-import com.me.server.model.User;
 import com.me.server.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,5 +32,8 @@ public class UserApiController {
   public List<User> findAll() {
     return userService.findAll();
   }
+
+  // @GetMapping("/logout")
+  // public ResponseEntity<User> logout()
 
 }
