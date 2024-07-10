@@ -1,4 +1,4 @@
-package com.me.server.model;
+package com.me.server.domain;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -29,22 +29,36 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private Long id;
+
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
     @Column(name = "password")
     private String password;
+
+    @Column(name = "nickname")
+    private String nickname;
+
+    @Column(name = "provider")
+    private String provider;
+
     @Column(name = "createdAt", updatable = false)
     private LocalDateTime createdAt;
+
     @Column(name = "updatedAt", updatable = true)
     private LocalDateTime updatedAt;
+
     @Column(name = "lastLogin", updatable = true)
     private LocalDateTime lastLogin;
 
     @Builder
-    public User(String email, String password, LocalDateTime createdAt, LocalDateTime updatedAt,
+    public User(String email, String password, String provider, String nickname, LocalDateTime createdAt,
+            LocalDateTime updatedAt,
             LocalDateTime lastLogin) {
         this.email = email;
         this.password = password;
+        this.nickname = nickname;
+        this.provider = provider;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.lastLogin = lastLogin;
